@@ -11,7 +11,7 @@ create extension if not exists pgcrypto;
 create schema if not exists bravado_db;
 
 -- Roles (postgraphql, anonymous, user)
-create role bravado_postgraphql login password :'password';
+create role bravado_postgraphql login password 'password';
 
 create role bravado_anonymous;
 grant bravado_anonymous to bravado_postgraphql;
@@ -30,7 +30,7 @@ grant select, insert, update, delete on all tables in schema bravado_db to brava
 grant usage on all sequences in schema bravado_db to bravado_admin;
 grant execute on all functions in schema bravado_db to bravado_admin;
 
-create type l2.jwt_token as (
+create type bravado_db.jwt_token as (
   role text,
   user_id integer,
   exp integer
