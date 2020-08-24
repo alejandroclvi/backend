@@ -6,7 +6,7 @@ create table bravado_db.appointments (
   location             geometry,
   doctor               text,
   notes                text,
-  time                 timestamptz default now(),
+  time                 timestamptz not null default now(),
 );
 
 create unique index on bravado_db.appointments (id);
