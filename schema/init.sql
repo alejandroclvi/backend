@@ -23,19 +23,12 @@ create role bravado_admin bypassrls;
 grant bravado_admin to bravado_postgraphql;
 
 
--- Access control on l2 schema
-grant usage on schema l2 to bravado_anonymous, bravado_user, bravado_admin;
+-- Access control on bravado_db schema
+grant usage on schema bravado_db to bravado_anonymous, bravado_user, bravado_admin;
 
-grant select, insert, update, delete on all tables in schema l2 to bravado_admin;
-grant usage on all sequences in schema l2 to bravado_admin;
-grant execute on all functions in schema l2 to bravado_admin;
-
-create function l2_private.set_updated_at() returns trigger as $$
-begin
-  new.updated_at := current_timestamp;
-  return new;
-end;
-$$ language plpgsql;
+grant select, insert, update, delete on all tables in schema bravado_db to bravado_admin;
+grant usage on all sequences in schema bravado_db to bravado_admin;
+grant execute on all functions in schema bravado_db to bravado_admin;
 
 create type l2.jwt_token as (
   role text,
