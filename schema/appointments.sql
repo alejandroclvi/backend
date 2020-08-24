@@ -1,4 +1,4 @@
--- TABLE user
+-- TABLE appointments
 
 create table bravado_db.appointments (
   id                   serial primary key,
